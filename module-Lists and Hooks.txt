@@ -1,0 +1,78 @@
+1. Explain Life cycle in Class Component and functional component with Hooks
+	     
+ ans: In React, components are the building blocks of your user interface, and they can be either class components or functional components with hooks. Each component goes through a series of phases or lifecycle events that allow you to manage its behavior and interaction with the DOM (Document Object Model). In this explanation, I'll cover the lifecycle of both class components and functional components with hooks.
+
+Class Component Lifecycle:
+
+1.Mounting Phase:
+
+'constructor()': This is the first method called when an instance of a class component is created. 
+You can initialize state and bind event handlers here.
+
+'componentWillMount()': Deprecated, and not recommended for use.
+
+'render()': This method is responsible for rendering the component's UI. 
+It should return the JSX structure that will be displayed.
+
+'componentDidMount()': This method is called immediately after the component is added to the DOM.
+ It's a good place to perform tasks like data fetching or setting up timers.
+
+
+2.Updating Phase:
+'shouldComponentUpdate(nextProps, nextState)': This method is called before rendering when new props or state are received.
+ It should return true or false to determine if the component should re-render.
+
+'componentWillUpdate(nextProps, nextState)': Deprecated, and not recommended for use.
+render(): Re-renders the component with updated props and state.
+
+'componentDidUpdate(prevProps, prevState)': This method is called after the component has been updated and re-rendered.
+ It's used for side effects after an update.
+
+
+3.Unmounting Phase:
+'componentWillUnmount()': This method is called just before a component is removed from the DOM.
+ It's used to clean up any resources or subscriptions.
+
+
+Functional Component with Hooks Lifecycle:
+Functional components with hooks do not have lifecycle methods in the same way class 
+components do. Instead, they rely on built-in hooks to manage their lifecycle and state.
+
+
+1.Mounting and Updating:
+'useState()': Allows you to manage state within your functional component.'
+useEffect()': Replaces' componentDidMount',' componentDidUpdate', and 
+'componentWillUnmount' in class components. 
+You can use 'useEffect' to perform side effects (e.g., data fetching, setting up subscriptions) and clean up.
+
+Example:
+import React, { useState, useEffect } from 'react';
+
+function FunctionalComponentWithHooks() {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+     console.log('Component did mount or update');
+    
+    
+    return () => {
+      console.log('Component will unmount or before next effect');
+    };
+  }, [count]); 
+
+  return (
+    <div>
+      <p>Count: {count}</p>
+      <button onClick={() => setCount(count + 1)}>Increment</button>
+    </div>
+  );
+}
+In functional components with hooks, "useState" handles component state, 
+and "useEffect" handles side effects and lifecycle behavior.
+
+These hooks make it easier to manage state and lifecycle in functional components, making
+ them a preferred choice in modern React development.
+
+
+
+
